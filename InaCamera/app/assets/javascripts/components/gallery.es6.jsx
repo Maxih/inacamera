@@ -24,7 +24,6 @@ class Gallery extends React.Component {
   }
 
   getGalleryItems() {
-    console.log(this.state.row_length);
     $.ajax({
       url: "/gallery.json",
       data: {start: this.loadedNum},
@@ -38,7 +37,6 @@ class Gallery extends React.Component {
       return;
     }
     let loadedImages = 0;
-    this.loadedNum += data.length;
 
     data.forEach((galleryItem) => {
       const image = new Image();
@@ -47,27 +45,45 @@ class Gallery extends React.Component {
 
         let ratio = image.height / image.width;
 
-        if(ratio < 0.5 && this.state.row_length + 4 <= this.galleryRows) {
-          this.state.row_length += 4;
-          galleryItem.class_name = "gallery-item-full";
-        } else if(ratio < 0.8 && this.state.row_length + 3 <= this.galleryRows) {
-          this.state.row_length += 3;
-          galleryItem.class_name = "gallery-item-large";
-        } else if(ratio < 1.2 && this.state.row_length + 2 <= this.galleryRows) {
-          this.state.row_length += 2;
-          galleryItem.class_name = ratio > 1 ? "gallery-item-half wide" : "gallery-item-half";
-        } else {
-          this.state.row_length += 1;
-          galleryItem.class_name = "gallery-item-quarter";
-        }
+        if(ratio < 1)
+          galleryItem.class_name = "gallery-item-wide";
+        else
+          galleryItem.class_name = "gallery-item-tall";
 
-        if(this.state.row_length === this.galleryRows)
-          this.state.row_length = 0;
+        //
+        // if(ratio < 0.5 && this.state.row_length + 4 <= this.galleryRows) {
+        //   this.state.row_length += 4;
+        //   galleryItem.class_name = "gallery-item-full";
+        // } else if(ratio < 0.8 && this.state.row_length + 3 <= this.galleryRows) {
+        //   this.state.row_length += 3;
+        //   galleryItem.class_name = "gallery-item-large";
+        // } else if(ratio < 1.2 && this.state.row_length + 2 <= this.galleryRows) {
+        //   this.state.row_length += 2;
+        //   galleryItem.class_name = ratio > 1 ? "gallery-item-half wide" : "gallery-item-half";
+        // } else {
+        //   this.state.row_length += 1;
+        //   galleryItem.class_name = "gallery-item-quarter";
+        // }
+        //
+        // if(this.state.row_length === this.galleryRows)
+        //   this.state.row_length = 0;
 
         loadedImages++;
 
-        if(loadedImages === data.length)
+        if(loadedImages === data.length) {
+          // const newData = this.state.gallery.slice(0);
+          //
+          // console.log(newData);
+          //
+          // if(!newData.some((el, idx, arr) => {
+          //   return el.id === galleryItem.id;
+          // })) {
+          //   newData.push(galleryItem);
+          // } else {
+          // }
+          this.loadedNum = this.state.gallery.length + data.length;
           this.setState({gallery: this.state.gallery.concat(data)});
+        }
 
       };
     });
@@ -76,18 +92,14 @@ class Gallery extends React.Component {
 
   render () {
     const items = this.state.gallery.map((item) => {
+      const classname = `gallery-item ${item.class_name}`;
       const background = {
         backgroundImage: `url(${item.pictures[0].image_url})`
       };
 
-      const classname = `gallery-item ${item.class_name}`;
-
       return (
-        <li
-          className={classname}
-          key={item.id}
-        >
-        <span style={background}></span>
+        <li className={classname} key={item.id}>
+          <span style={background}></span>
         </li>
       );
     });

@@ -12,6 +12,7 @@
   display: inline-block;
   border-right: 5px solid transparent;
   margin-bottom: 5px;
+  width: 50%;
 }
 
 .gallery-item span {
@@ -49,6 +50,14 @@
   background-size: 120% auto;
 }
 
+.gallery-item-wide span {
+  background-size: auto 120%;
+}
+
+.gallery-item-tall span {
+  background-size: 120% auto;
+}
+
 .gallery-item-quarter span {
   background-size: auto 120%;
 }
@@ -60,4 +69,19 @@
   transform: translateY(-15px);
   z-index: 100;
   cursor: pointer;
+}
+
+.gallery-insert-enter {
+  opacity: 0;
+}
+.gallery-insert-enter.gallery-insert-enter-active {
+  opacity: 1;
+  transition: 0.5s;
+}
+.gallery-insert-leave {
+  opacity: 1;
+}
+.gallery-insert-leave.gallery-insert-leave-active {
+  opacity: 0;
+  transition: 500ms;
 }
