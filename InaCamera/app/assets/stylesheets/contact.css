@@ -1,0 +1,35 @@
+.contact-wrapper {
+  text-align: center;
+}
+
+.contact-wrapper ul {
+  font-size: 0;
+}
+
+.contact-wrapper li {
+  display: inline-block;
+  height: 150px;
+  width: 60px;
+  transition: width 0.5s;
+}
+
+.contact-wrapper li:hover {
+  width: 128px;
+  cursor: pointer;
+}
+
+#email-icon:hover {
+  width: 170px;
+}
+
+#linkedin-icon {
+  background: url("./icons/linkedin.png") left center no-repeat;
+}
+
+#email-icon {
+  background: url("./icons/email.png") center center no-repeat;
+}
+
+#phone-icon {
+  background: url("./icons/phone.png") right center no-repeat;
+}

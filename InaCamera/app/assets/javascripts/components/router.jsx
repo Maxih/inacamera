@@ -4,7 +4,8 @@ class Router extends React.Component {
     super();
 
     const routes = {
-      index: (<Gallery />)
+      index: (<Gallery />),
+      contact: (<Contact />)
     };
 
 

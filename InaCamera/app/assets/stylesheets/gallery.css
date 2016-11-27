@@ -71,17 +71,33 @@
   cursor: pointer;
 }
 
-.gallery-insert-enter {
+.gallery-item-trans-enter {
   opacity: 0;
+
 }
-.gallery-insert-enter.gallery-insert-enter-active {
+.gallery-item-trans-enter.gallery-item-trans-enter-active {
   opacity: 1;
   transition: 0.5s;
 }
-.gallery-insert-leave {
+.gallery-item-trans-leave {
   opacity: 1;
 }
-.gallery-insert-leave.gallery-insert-leave-active {
+.gallery-item-trans-leave.gallery-item-trans-leave-active {
   opacity: 0;
   transition: 500ms;
+}
+
+.gallery-item p {
+  font-size: 14px;
+  opacity: 0;
+  text-transform: uppercase;
+  transition: opacity 0.5s;
+  color: #FFF;
+  margin: 5px;
+  font-family: Verdana;
+}
+
+.gallery-item:hover p {
+
+  opacity: 0.9;
 }

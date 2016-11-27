@@ -33,3 +33,30 @@
   opacity: 0;
   transition: 500ms;
 }
+
+.loading {
+  display: block;
+  background: url("./icons/loading.gif") center center no-repeat;
+  height: 50px;
+  width: 50px;
+  margin: 40px auto;
+
+}
+
+.not-loading {
+  border-radius: 50%;
+  border: 1px solid #bdbdbd;
+  font-family: Tahoma;
+  display: block;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #bdbdbd;
+  word-spacing: 30px;
+  margin: 40px auto;
+  opacity: 0.5;
+}

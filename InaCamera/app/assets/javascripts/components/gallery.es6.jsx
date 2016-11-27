@@ -4,39 +4,38 @@ class Gallery extends React.Component {
 
     this.state = {
       gallery: [],
-      row_length: 0
+      loading: true
     };
-
-    this.galleryRows = 4;
-
-    this.loadedNum = 0;
-    this.loadedAll = false;
 
     $(document).on('scroll', (e) => {
       let distanceFromBottom = Math.floor($(document).height() - $(document).scrollTop() - $(window).height());
-
       if(distanceFromBottom < 50 && !this.loadedAll) {
           this.getGalleryItems();
       }
     });
 
+    this.unMounted = false;
+    this.loadingImages = false;
     this.getGalleryItems();
   }
 
+  componentWillUnmount () {
+    this.unMounted = true;
+  }
+
   getGalleryItems() {
-    $.ajax({
-      url: "/gallery.json",
-      data: {start: this.loadedNum},
-      success: this.updateGallery.bind(this)
-    });
+    if(!this.loadingImages) {
+      this.loadingImages = true;
+      $.ajax({
+        url: "/gallery.json",
+        data: {start: this.state.gallery.length},
+        success: this.updateGallery.bind(this)
+      });
+    }
   }
 
   updateGallery(data, status, jqXHR) {
-    if(data.length === 0) {
-      this.loadedAll = true;
-      return;
-    }
-    let loadedImages = 0;
+    this.loadingImages = false;
 
     data.forEach((galleryItem) => {
       const image = new Image();
@@ -68,45 +67,54 @@ class Gallery extends React.Component {
         // if(this.state.row_length === this.galleryRows)
         //   this.state.row_length = 0;
 
-        loadedImages++;
 
-        if(loadedImages === data.length) {
-          // const newData = this.state.gallery.slice(0);
-          //
-          // console.log(newData);
-          //
-          // if(!newData.some((el, idx, arr) => {
-          //   return el.id === galleryItem.id;
-          // })) {
-          //   newData.push(galleryItem);
-          // } else {
-          // }
-          this.loadedNum = this.state.gallery.length + data.length;
-          this.setState({gallery: this.state.gallery.concat(data)});
-        }
+        const updatedData = this.state.gallery.slice(0);
+        if(updatedData.indexOf(galleryItem) === -1)
+          updatedData.push(galleryItem);
 
+        if(!this.unMounted)
+          this.setState({gallery: updatedData});
       };
     });
-  }
 
+    if(data.length === 0) {
+      if(!this.unMounted)
+        this.setState({loading: false});
+    }
+  }
 
   render () {
     const items = this.state.gallery.map((item) => {
-      const classname = `gallery-item ${item.class_name}`;
-      const background = {
-        backgroundImage: `url(${item.pictures[0].image_url})`
-      };
-
       return (
-        <li className={classname} key={item.id}>
-          <span style={background}></span>
-        </li>
+        <GalleryItem
+          backgroundImage={item.pictures[0].image_url}
+          className={item.class_name}
+          key={item.id}
+          blurb={item.blurb}
+          />
       );
     });
 
+    if(this.state.loading) {
+      items.push(
+        <span key={"loading"} className={"loading"}></span>
+      );
+    }
+    else {
+      items.push(
+        <span key={"loading"} className={"not-loading"}>No More Items</span>
+      );
+    }
+
     return (
       <ul className={"gallery group"}>
-        {items.length === 0 ? "loading" : items }
+        <ReactCSSTransitionGroup
+           transitionName="gallery-item-trans"
+           transitionEnterTimeout={500}
+           transitionLeaveTimeout={500}
+           >
+        {items}
+        </ReactCSSTransitionGroup>
       </ul>
     );
   }

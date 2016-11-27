@@ -102,7 +102,6 @@
   text-transform: lowercase;
 }
 
-
 .active .main-nav li:after {
   opacity: 1;
 }
