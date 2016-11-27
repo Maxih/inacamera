@@ -1,3 +1,4 @@
+
 class Router extends React.Component {
   constructor(node) {
     super();
@@ -8,14 +9,15 @@ class Router extends React.Component {
 
 
     this.state = {
-      route: routes.index,
+      route: this.activeRoute(),
       routes: routes
     };
+
+    $(window).on("hashchange", this.changeRoute.bind(this));
   }
 
 
   changeRoute() {
-    alert(this.activeRoute());
     this.setState({route: this.activeRoute()});
   }
 
@@ -26,7 +28,13 @@ class Router extends React.Component {
   render() {
     return(
       <section>
-        {this.state.routes[this.state.route]}
+        <ReactCSSTransitionGroup
+          transitionName="content"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+        >
+          {this.state.routes[this.state.route]}
+        </ReactCSSTransitionGroup>
       </section>
     );
   }

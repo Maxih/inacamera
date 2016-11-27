@@ -1,8 +1,16 @@
-<ul class="sidebar-nav">
-  <li><a href="#index">Index</a></li>
-  <li><a href="#test1">Test1</a></li>
-  <li><a href="#test2">Test2</a></li>
-</ul>
-<section class="main-wrapper">
-  <%= react_component('Router') %>
+<section class="page-wrapper">
+  <section class="content-wrapper group">
+    <nav class="main-nav group">
+      <ul>
+        <li id="main-nav-1" title="Index">Index</li>
+        <li id="main-nav-2" title="Gallery">Gallery</li>
+        <li id="main-nav-3" title="Contact">Contact</li>
+        <li id="main-nav-4" title="Test">Test</li>
+        <li id="main-nav-5" title="Test">Test</li>
+      </ul>
+    </nav>
+    <section class="main-wrapper group">
+      <%= react_component('Router') %>
+    </section>
+  </section>
 </section>

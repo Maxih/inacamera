@@ -1,0 +1,35 @@
+.main-wrapper {
+  margin-top: 85px;
+}
+
+.page-wrapper {
+  width: 650px;
+  margin: 0 auto;
+  display: block;
+  height: 100vh;
+}
+
+.content-wrapper {
+  top: 150px;
+  position: relative;
+  transform: translateY(-65px);
+}
+
+.active .content-wrapper {
+  top: 50%;
+}
+
+.content-enter {
+  opacity: 0;
+}
+.content-enter.content-enter-active {
+  opacity: 1;
+  transition: 0.5s;
+}
+.content-leave {
+  opacity: 1;
+}
+.content-leave.content-leave-active {
+  opacity: 0;
+  transition: 500ms;
+}

@@ -1,0 +1,108 @@
+.main-nav {
+
+}
+
+.main-nav ul {
+  font-size: 0;
+  position: relative;
+  height: 137px;
+}
+
+.main-nav ul li {
+  display: inline-block;
+  cursor: pointer;
+  width: 130px;
+  height: 137px;
+  position: absolute;
+  -webkit-transition: left 0.5s;
+  transition: left 0.5s;
+}
+
+.main-nav ul:hover {
+
+}
+
+.main-nav ul li#main-nav-1 {
+  background: url("./nav-links/nav-link-1.png");
+  z-index: 10;
+  left: 260px;
+}
+
+.main-nav ul li#main-nav-2 {
+  background: url("./nav-links/nav-link-2.png");
+  z-index: 8;
+  left: 260px;
+}
+
+.main-nav ul li#main-nav-3 {
+  background: url("./nav-links/nav-link-3.png");
+  z-index: 7;
+  left: 260px;
+}
+
+.main-nav ul li#main-nav-4 {
+  background: url("./nav-links/nav-link-4.png");
+  z-index: 6;
+  left: 260px;
+}
+
+.main-nav ul li#main-nav-5 {
+  background: url("./nav-links/nav-link-5.png");
+  z-index: 9;
+  left: 260px;
+}
+
+.active .main-nav ul li#main-nav-1 {
+  left: 0px;
+}
+.active .main-nav ul li#main-nav-2 {
+  left: 130px;
+}
+.active .main-nav ul li#main-nav-3 {
+  left: 260px;
+}
+.active .main-nav ul li#main-nav-4 {
+  left: 390px;
+}
+.active .main-nav ul li#main-nav-5 {
+  left: 520px;
+}
+
+.main-nav ul li#main-nav-1:after {
+  left: 65px;
+  bottom: 90px;
+}
+.main-nav ul li#main-nav-2:after {
+  left: 73px;
+  bottom: 90px;
+}
+.main-nav ul li#main-nav-3:after {
+  left: 65px;
+  bottom: 90px;
+}
+.main-nav ul li#main-nav-4:after {
+  left: 65px;
+  bottom: 90px;
+}
+.main-nav ul li#main-nav-5:after {
+  left: 65px;
+  bottom: 90px;
+}
+
+.main-nav ul li:after {
+  content: attr(title);
+  position: absolute;
+  transform: rotate(30deg);
+  font-size: 12px;
+  opacity: 0;
+  -webkit-transition: 1s;
+  transition: opacity 1s;
+  display: block;
+  font-family: Verdana;
+  text-transform: lowercase;
+}
+
+
+.active .main-nav li:after {
+  opacity: 1;
+}

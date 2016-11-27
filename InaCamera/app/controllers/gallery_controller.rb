@@ -1,6 +1,8 @@
 class GalleryController < ApplicationController
   def index
-    @gallery = GalleryItem.all.includes(:pictures)
+    start_idx = params[:start] || 0;
+
+    @gallery = GalleryItem.all.includes(:pictures).limit(6).offset(start_idx)
 
     respond_to do |format|
       format.html { redirect_to root_url }

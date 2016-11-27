@@ -17,3 +17,32 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+
+const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+$(() => {
+
+    if(window.location.hash === "") {
+      $(".page-wrapper").addClass("active");
+    }
+
+    $(".main-nav ul li").each(function(el) {
+      const text = $(this).text().toLowerCase();
+      $(this).on("click", () => {
+        if($(".page-wrapper").hasClass("active")) {
+          window.location.hash = text;
+          $(".content-wrapper").animate({
+            top: "150px"
+          });
+
+          $(".page-wrapper").removeClass("active");
+        } else {
+          window.location.hash = "";
+          $(".content-wrapper").animate({
+            top: "50%"
+          });
+          $(".page-wrapper").addClass("active");
+        }
+      });
+    });
+});
