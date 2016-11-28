@@ -21,14 +21,18 @@
 const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 $(() => {
+    let lastHash = "";
 
     if(window.location.hash === "") {
       $(".page-wrapper").addClass("active");
     }
 
     $(".main-nav ul li").each(function(el) {
-      const text = $(this).text().toLowerCase();
+      let text = $(this).text().toLowerCase();
       $(this).on("click", () => {
+        if($(this).hasClass("last-nav"))
+          text = lastHash;
+
         if($(".page-wrapper").hasClass("active")) {
           window.location.hash = text;
           $(".content-wrapper").animate({
@@ -37,6 +41,7 @@ $(() => {
 
           $(".page-wrapper").removeClass("active");
         } else {
+          lastHash = window.location.hash;
           window.location.hash = "";
           $(".content-wrapper").animate({
             top: "50%"

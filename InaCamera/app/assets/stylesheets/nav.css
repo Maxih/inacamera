@@ -112,7 +112,7 @@
   height: 200px;
   position: absolute;
   -webkit-transition: left 0.5s;
-  transition: left 0.5s;
+  transition: left 0.5s, bottom 0.5s;
   background-size: 300px auto;
   background-position: center center;
   left: 285px;
@@ -139,10 +139,7 @@
   z-index: 6;
 }
 
-.main-nav ul li:hover {
-  /*background-size: 350px auto;*/
-  height: 200px;
-}
+
 
 .active .main-nav ul li:hover {
 
@@ -198,4 +195,26 @@
 
 .active .main-nav li:after {
   opacity: .5;
+}
+
+.active .main-nav ul .last-nav {
+  width: 50px;
+  height: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -75px;
+  display: block;
+  background: url("./icons/downarrow.png") center center no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.3;
+  transform: rotate(180deg);
+
+}
+
+.active .main-nav ul .last-nav:hover {
+  opacity: 0.6;
+}
+
+.main-nav ul .last-nav {
+  bottom: 10px;
 }
