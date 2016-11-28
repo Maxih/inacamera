@@ -14,13 +14,18 @@ class Gallery extends React.Component {
       }
     });
 
+
     this.unMounted = false;
     this.loadingImages = false;
-    this.getGalleryItems();
+
   }
 
   componentWillUnmount () {
     this.unMounted = true;
+  }
+
+  componentDidMount() {
+    this.getGalleryItems();
   }
 
   getGalleryItems() {
@@ -83,6 +88,11 @@ class Gallery extends React.Component {
     }
   }
 
+  selectGalleryItem(id) {
+
+    window.location.hash = `${window.location.hash}/${id}`;
+  }
+
   render () {
     const items = this.state.gallery.map((item) => {
       return (
@@ -90,7 +100,9 @@ class Gallery extends React.Component {
           backgroundImage={item.pictures[0].image_url}
           className={item.class_name}
           key={item.id}
+          itemId={item.id}
           blurb={item.blurb}
+          onItemClick={this.selectGalleryItem.bind(this, item.id)}
           />
       );
     });

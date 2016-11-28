@@ -1,7 +1,6 @@
 class GalleryItem extends React.Component {
   constructor() {
     super();
-
   }
 
   render () {
@@ -10,9 +9,9 @@ class GalleryItem extends React.Component {
     };
 
     return (
-      <li className={`gallery-item ${this.props.className}`}>
+      <li onClick={this.props.onItemClick} id={this.props.itemId} className={`gallery-item ${this.props.className}`}>
         <span style={background}>
-          <p>{this.props.blurb}</p>  
+          <p>{this.props.blurb}</p>
         </span>
       </li>
     );

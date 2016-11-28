@@ -32,7 +32,7 @@ $(() => {
         if($(".page-wrapper").hasClass("active")) {
           window.location.hash = text;
           $(".content-wrapper").animate({
-            top: "150px"
+            top: "200px"
           });
 
           $(".page-wrapper").removeClass("active");

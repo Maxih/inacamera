@@ -11,6 +11,13 @@ class GalleryController < ApplicationController
   end
 
   def show
+    item_idx = params[:id]
 
+    @gallery_item = GalleryItem.where(id: item_idx).includes(:pictures).first;
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { render :show }
+    end
   end
 end

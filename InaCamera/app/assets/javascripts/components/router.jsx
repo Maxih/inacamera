@@ -3,23 +3,44 @@ class Router extends React.Component {
   constructor(node) {
     super();
 
+    this.pageId = -1;
+
     const routes = {
-      index: (<Gallery />),
-      contact: (<Contact />)
+      gallery: Gallery,
+      show_gallery: GalleryShow,
+      contact: Contact
     };
 
 
     this.state = {
-      route: this.activeRoute(),
+      route: "",
       routes: routes
     };
+
+
 
     $(window).on("hashchange", this.changeRoute.bind(this));
   }
 
+  componentDidMount() {
+    this.changeRoute();
+  }
+
+  renderRoute() {
+    let CurRoute = this.state.routes[this.state.route];
+
+    if(CurRoute === undefined)
+      return "";
+
+    return (<CurRoute id={this.state.id}/>);
+  }
 
   changeRoute() {
-    this.setState({route: this.activeRoute()});
+    const route = this.activeRoute().split("/");
+    let curRoute = route.length === 1 ? route[0] : `show_${route[0]}`;
+    let routeId = route.length > 1 ? route[1] : -1;
+
+    this.setState({route: curRoute, id: routeId});
   }
 
   activeRoute() {
@@ -34,7 +55,7 @@ class Router extends React.Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}
         >
-          {this.state.routes[this.state.route]}
+          {this.renderRoute()}
         </ReactCSSTransitionGroup>
       </section>
     );

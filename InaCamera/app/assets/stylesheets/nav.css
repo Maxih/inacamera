@@ -1,8 +1,4 @@
-.main-nav {
-
-}
-
-.main-nav ul {
+/*.main-nav ul {
   font-size: 0;
   position: relative;
   height: 137px;
@@ -16,10 +12,6 @@
   position: absolute;
   -webkit-transition: left 0.5s;
   transition: left 0.5s;
-}
-
-.main-nav ul:hover {
-
 }
 
 .main-nav ul li#main-nav-1 {
@@ -104,4 +96,106 @@
 
 .active .main-nav li:after {
   opacity: 1;
+}*/
+
+.main-nav ul {
+  font-size: 0;
+  position: relative;
+  height: 180px;
+
+}
+
+.main-nav ul li {
+  display: inline-block;
+  cursor: pointer;
+  width: 190px;
+  height: 200px;
+  position: absolute;
+  -webkit-transition: left 0.5s;
+  transition: left 0.5s;
+  background-size: 300px auto;
+  background-position: center center;
+  left: 285px;
+}
+
+.main-nav ul li#main-nav-1 {
+  background-image: url("./nav-links-v2/Ina_Camera-03.png");
+  z-index: 10;
+
+}
+
+.main-nav ul li#main-nav-2 {
+  background-image: url("./nav-links-v2/Ina_Camera-07.png");
+  z-index: 8;
+}
+
+.main-nav ul li#main-nav-3 {
+  background-image: url("./nav-links-v2/Ina_Camera-05.png");
+  z-index: 7;
+}
+
+.main-nav ul li#main-nav-4 {
+  background-image: url("./nav-links-v2/Ina_Camera-08.png");
+  z-index: 6;
+}
+
+.main-nav ul li:hover {
+  /*background-size: 350px auto;*/
+  height: 200px;
+}
+
+.active .main-nav ul li:hover {
+
+}
+
+
+.active .main-nav ul li#main-nav-1 {
+  left: 50px;
+}
+.active .main-nav ul li#main-nav-2 {
+  left: 190px;
+}
+.active .main-nav ul li#main-nav-3 {
+  left: 380px;
+}
+.active .main-nav ul li#main-nav-4 {
+  left: 570px;
+}
+
+.main-nav ul li#main-nav-1:after {
+  left: 15px;
+  bottom: 120px;
+  transform: rotate(-15deg)rotateY(-15deg);
+}
+.main-nav ul li#main-nav-2:after {
+  left: 112px;
+  bottom: 55px;
+  transform: rotate(90deg);
+}
+.main-nav ul li#main-nav-3:after {
+  left: 65px;
+  bottom: 123px;
+  transform: rotate(18deg) rotateY(20deg);
+}
+.main-nav ul li#main-nav-4:after {
+  left: 88px;
+  bottom: 127px;
+  transform: rotate(20deg) rotateY(20deg);
+}
+
+
+.main-nav ul li:after {
+  content: attr(title);
+  position: absolute;
+  font-size: 12px;
+  opacity: 0;
+  -webkit-transition: 1s;
+  transition: opacity 1s;
+  display: block;
+  font-family: Verdana;
+  text-transform: lowercase;
+}
+
+.active .main-nav li:after {
+  opacity: .5;
 }

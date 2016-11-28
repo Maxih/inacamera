@@ -1,5 +1,4 @@
 class Contact extends React.Component {
-
   render() {
     return (
       <section className={"contact-wrapper"}>

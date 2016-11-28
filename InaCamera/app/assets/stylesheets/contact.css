@@ -10,12 +10,14 @@
   display: inline-block;
   height: 150px;
   width: 60px;
-  transition: width 0.5s;
+  transition: width 0.5s, opacity 0.5s;
+  opacity: 0.5;
 }
 
 .contact-wrapper li:hover {
   width: 128px;
   cursor: pointer;
+  opacity: 1;
 }
 
 #email-icon:hover {
